@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useRef } from "react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { useGsapContext } from "@/components/motion/useGsapContext";
@@ -14,6 +15,7 @@ interface CaseStudyCardProps {
   sector: string;
   year: string;
   index: number;
+  image?: string | null;
 }
 
 export function CaseStudyCard({
@@ -24,6 +26,7 @@ export function CaseStudyCard({
   sector,
   year,
   index,
+  image,
 }: CaseStudyCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLDivElement>(null);
@@ -71,22 +74,33 @@ export function CaseStudyCard({
       {/* Image slot */}
       <div
         ref={imgRef}
-        className="w-full rounded-xl overflow-hidden mb-8"
-        style={{ aspectRatio: "16/9" }}
+        className="w-full rounded-xl overflow-hidden mb-8 group"
       >
-        <div
-          className="w-full h-full flex items-center justify-center"
-          style={{
-            background: `repeating-linear-gradient(${45 + index * 30}deg, var(--border) 0 8px, var(--elev) 8px 16px)`,
-          }}
-        >
-          <span
-            className="font-mono text-[12px] tracking-[0.08em] uppercase text-[var(--muted)]"
-            style={{ fontFamily: "var(--font-mono)" }}
+        {image ? (
+          <Image
+            src={image}
+            alt={name}
+            width={0}
+            height={0}
+            sizes="(max-width: 768px) 100vw, 90vw"
+            className="w-full h-auto grayscale transition-[filter] duration-500 ease-in-out group-hover:grayscale-0"
+          />
+        ) : (
+          <div
+            className="w-full flex items-center justify-center"
+            style={{
+              aspectRatio: "16/9",
+              background: `repeating-linear-gradient(${45 + index * 30}deg, var(--border) 0 8px, var(--elev) 8px 16px)`,
+            }}
           >
-            {name} — Coming soon
-          </span>
-        </div>
+            <span
+              className="font-mono text-[12px] tracking-[0.08em] uppercase text-[var(--muted)]"
+              style={{ fontFamily: "var(--font-mono)" }}
+            >
+              {name} — Coming soon
+            </span>
+          </div>
+        )}
       </div>
 
       {/* Text */}

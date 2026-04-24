@@ -25,6 +25,32 @@
   filter: invert(1);
 }
 
+/* ── Tivor logo hover spin ── */
+@keyframes tivor-logo-spin {
+  0%   { transform: rotate(0deg)   scale(1); }
+  55%  { transform: rotate(390deg) scale(1.12); }
+  75%  { transform: rotate(345deg) scale(1.06); }
+  90%  { transform: rotate(365deg) scale(1.04); }
+  100% { transform: rotate(360deg) scale(1.05); }
+}
+
+.tivor-logo {
+  will-change: transform;
+  transition: transform 0.25s ease;
+}
+
+.tivor-logo:hover {
+  animation: tivor-logo-spin 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.theme-toggle svg {
+  will-change: transform;
+}
+
+.theme-toggle:hover svg {
+  animation: tivor-logo-spin 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
 /* ── Tailwind v4 theme bridge ── */
 @theme inline {
   --color-bg: var(--bg);

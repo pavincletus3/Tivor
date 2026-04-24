@@ -43,6 +43,7 @@ export default function WorkPage() {
             sector={product.sector}
             year={product.year}
             index={i}
+            image={product.image}
           />
         ))}
       </Container>

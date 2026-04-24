@@ -30,7 +30,7 @@ export function Nav() {
             alt="Tivor logo"
             width={52}
             height={52}
-            className="rounded-full logo-theme"
+            className="rounded-full logo-theme tivor-logo"
             priority
           />
         </Link>
@@ -84,7 +84,7 @@ export function Nav() {
               alt="Tivor logo"
               width={52}
               height={52}
-              className="rounded-full logo-theme"
+              className="rounded-full logo-theme tivor-logo"
             />
           </Link>
           <button
