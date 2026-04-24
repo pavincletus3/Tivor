@@ -82,7 +82,7 @@ export function ClosingCTA() {
           <Link
             ref={btnRef}
             href="/contact"
-            className="inline-flex items-center gap-3 px-8 py-4 rounded-full border border-[var(--fg)] text-[var(--fg)] font-medium text-[15px] transition-colors hover:bg-[var(--fg)] hover:text-[var(--bg)]"
+            className="cta-btn inline-flex items-center gap-3 px-8 py-4 rounded-full border border-fg text-fg font-medium text-[15px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fg focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
             style={{ display: "inline-flex" }}
           >
             Get in touch

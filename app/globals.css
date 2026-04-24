@@ -271,6 +271,12 @@ a {
   }
 }
 
+/* ── CTA button hover ── */
+a.cta-btn:hover {
+  background-color: var(--fg);
+  color: var(--bg);
+}
+
 /* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
   *,
