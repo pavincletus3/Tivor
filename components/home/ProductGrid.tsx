@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useRef, useState, useEffect } from "react";
 import { Container } from "@/components/layout/Container";
 import { gsap } from "@/lib/gsap";
@@ -200,23 +201,32 @@ export function ProductGrid() {
                 </div>
 
                 {/* Image slot */}
-                <div
-                  className="w-full"
-                  style={{ aspectRatio: "16/7", background: "var(--border)" }}
-                >
-                  <div
-                    className="w-full h-full flex items-center justify-center"
-                    style={{
-                      background: `repeating-linear-gradient(${45 + i * 30}deg, var(--border) 0 8px, var(--elev) 8px 16px)`,
-                    }}
-                  >
-                    <span
-                      className="font-mono text-[11px] tracking-widest uppercase text-muted"
-                      style={{ fontFamily: "var(--font-mono)" }}
+                <div className="w-full">
+                  {p.image ? (
+                    <Image
+                      src={p.image}
+                      alt={p.name}
+                      width={0}
+                      height={0}
+                      sizes="(max-width: 768px) 100vw, 90vw"
+                      className="w-full h-auto"
+                    />
+                  ) : (
+                    <div
+                      className="w-full flex items-center justify-center"
+                      style={{
+                        aspectRatio: "16/7",
+                        background: `repeating-linear-gradient(${45 + i * 30}deg, var(--border) 0 8px, var(--elev) 8px 16px)`,
+                      }}
                     >
-                      {p.name} — Image coming soon
-                    </span>
-                  </div>
+                      <span
+                        className="font-mono text-[11px] tracking-widest uppercase text-muted"
+                        style={{ fontFamily: "var(--font-mono)" }}
+                      >
+                        {p.name} — Image coming soon
+                      </span>
+                    </div>
+                  )}
                 </div>
               </div>
             </Link>

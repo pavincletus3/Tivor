@@ -124,7 +124,7 @@ export function Services() {
                       </p>
                     </div>
 
-                    {/* Image strip reveal */}
+                    {/* Image strip reveal — desktop hover only */}
                     <div
                       className="hidden md:block"
                       style={{
@@ -145,6 +145,26 @@ export function Services() {
                         style={{ objectFit: "cover" }}
                       />
                     </div>
+                  </div>
+
+                  {/* Mobile image — always visible, full-width below text */}
+                  <div
+                    className="block md:hidden"
+                    style={{
+                      marginTop: "1.25rem",
+                      borderRadius: 6,
+                      overflow: "hidden",
+                      position: "relative",
+                      height: 200,
+                    }}
+                  >
+                    <Image
+                      src={service.image}
+                      alt={service.title}
+                      fill
+                      sizes="100vw"
+                      style={{ objectFit: "cover" }}
+                    />
                   </div>
                 </div>
               </ScrollReveal>

@@ -17,6 +17,7 @@ export const PRODUCTS = [
     sector: "Manufacturing",
     year: "2024",
     slug: "manufai",
+    image: "/products/manuf.jpeg",
   },
   {
     id: "procureai",
@@ -27,6 +28,7 @@ export const PRODUCTS = [
     sector: "Procurement",
     year: "2024",
     slug: "procureai",
+    image: "/products/procureai.jpeg",
   },
   {
     id: "intercom",
@@ -37,6 +39,7 @@ export const PRODUCTS = [
     sector: "Enterprise",
     year: "2024",
     slug: "intercom",
+    image: "/products/intercom.jpeg",
   },
   {
     id: "jobready",
@@ -47,6 +50,7 @@ export const PRODUCTS = [
     sector: "HR Tech",
     year: "2025",
     slug: "jobready",
+    image: "/products/jobready.jpeg",
   },
 ];
 
@@ -101,6 +105,18 @@ export const SERVICES = [
     description:
       "Simulating real corporate workflows for training, skill validation, and evaluation.",
     image: "/services/Worksimulation.jpeg",
+  },
+  {
+    title: "Operational AI Readiness",
+    description:
+      "We assess your workflows, data infrastructure, and team structures to identify where AI delivers real operational value — and where it doesn't.",
+    image: "/services/Strategic AI System Design.jpeg",
+  },
+  {
+    title: "AI Integration & Deployment",
+    description:
+      "We embed AI systems into your existing tools, processes, and teams — ensuring adoption, not just installation.",
+    image: "/services/Manufacturing Intelligence Systems.jpeg",
   },
 ];
 
