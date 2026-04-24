@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function WorkPage() {
   return (
-    <main className="pt-28">
+    <main className="pt-24 md:pt-28">
       <Container>
         <div className="py-16 border-b border-[var(--border)]">
           <p

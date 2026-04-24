@@ -11,7 +11,7 @@ const SOCIALS = [
 
 export default function ContactPage() {
   return (
-    <main className="pt-28">
+    <main className="pt-24 md:pt-28">
       {/* Hero — heading left, form right */}
       <section className="py-24 md:py-40 border-b border-border">
         <Container>

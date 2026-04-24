@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <main className="pt-28">
+    <main className="pt-24 md:pt-28">
       <Mission />
       <Services />
       <Process />

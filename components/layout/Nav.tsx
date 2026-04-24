@@ -1,8 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
+import tivorLogo from "@/app/Logo.png";
 import { useState } from "react";
 import { ThemeToggle } from "./ThemeToggle";
+import { SITE } from "@/lib/content";
 
 const LINKS = [
   { href: "/work", label: "Work" },
@@ -21,18 +24,15 @@ export function Nav() {
         aria-label="Primary"
       >
         {/* Logo */}
-        <Link
-          href="/"
-          className="flex items-center justify-center w-[52px] h-[52px] rounded-full border border-[var(--border)] bg-[var(--elev)] font-semibold text-[13px] tracking-wide text-[var(--fg)] select-none"
-          aria-label="Tivor home"
-        >
-          <span className="flex items-center gap-[2px]">
-            TVR
-            <span className="flex gap-[3px] ml-[3px] items-center" aria-hidden>
-              <span className="w-[3px] h-[3px] rounded-full bg-[var(--fg)]" />
-              <span className="w-[3px] h-[3px] rounded-full bg-[var(--fg)]" />
-            </span>
-          </span>
+        <Link href="/" aria-label="Tivor home">
+          <Image
+            src={tivorLogo}
+            alt="Tivor logo"
+            width={52}
+            height={52}
+            className="rounded-full logo-theme"
+            priority
+          />
         </Link>
 
         {/* Center nav (desktop) */}
@@ -78,12 +78,14 @@ export function Nav() {
         aria-hidden={!menuOpen}
       >
         <div className="flex items-center justify-between mb-12">
-          <Link
-            href="/"
-            className="flex items-center justify-center w-[52px] h-[52px] rounded-full border border-[var(--border)] bg-[var(--elev)] font-semibold text-[13px] text-[var(--fg)]"
-            onClick={() => setMenuOpen(false)}
-          >
-            TVR
+          <Link href="/" onClick={() => setMenuOpen(false)}>
+            <Image
+              src={tivorLogo}
+              alt="Tivor logo"
+              width={52}
+              height={52}
+              className="rounded-full logo-theme"
+            />
           </Link>
           <button
             className="flex items-center justify-center w-[52px] h-[52px] rounded-full border border-[var(--border)] text-[var(--fg)] cursor-pointer"
@@ -109,6 +111,34 @@ export function Nav() {
             </Link>
           ))}
         </nav>
+
+        {/* Footer — socials + copyright */}
+        <div className="mt-auto pt-10 flex items-end justify-between">
+          <p
+            className="text-[11px] text-[var(--muted)]"
+            style={{ fontFamily: "var(--font-mono)" }}
+          >
+            © {new Date().getFullYear()} {SITE.name}
+          </p>
+          <div className="flex items-center gap-4">
+            <a
+              href={SITE.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[12px] font-medium text-[var(--muted)] hover:text-[var(--fg)] transition-colors"
+            >
+              LinkedIn ↗
+            </a>
+            <a
+              href={SITE.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[12px] font-medium text-[var(--muted)] hover:text-[var(--fg)] transition-colors"
+            >
+              Instagram ↗
+            </a>
+          </div>
+        </div>
       </div>
     </>
   );

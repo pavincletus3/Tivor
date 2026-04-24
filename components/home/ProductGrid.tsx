@@ -1,37 +1,80 @@
 "use client";
 
 import Link from "next/link";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Container } from "@/components/layout/Container";
-import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { gsap } from "@/lib/gsap";
 import { useGsapContext } from "@/components/motion/useGsapContext";
 import { prefersReducedMotion } from "@/lib/reducedMotion";
 import { PRODUCTS } from "@/lib/content";
 
+const DOTS = [
+  { color: "#FF5F57" }, // red
+  { color: "#FEBC2E" }, // yellow
+  { color: "#28C840" }, // green
+];
+
 export function ProductGrid() {
   const ref = useRef<HTMLElement>(null);
+  const [cardLayout, setCardLayout] = useState({ base: 10, step: 6 });
+
+  useEffect(() => {
+    if (window.innerWidth < 768) setCardLayout({ base: 6, step: 12 });
+  }, []);
 
   useGsapContext(
     () => {
       if (prefersReducedMotion()) return;
 
-      const cards = gsap.utils.toArray<HTMLElement>(".product-card-inner");
-      cards.forEach((card) => {
+      const section = ref.current!;
+      const cards = gsap.utils.toArray<HTMLElement>(".product-card-inner", section);
+      const wrappers = gsap.utils.toArray<HTMLElement>(".product-card", section);
+      const n = cards.length;
+      const vh = window.innerHeight;
+      const isMobile = window.innerWidth < 768;
+      const cardBase = isMobile ? 6 : 10;
+      const cardStep = isMobile ? 12 : 6;
+      const scrollPx = isMobile ? vh * 0.5 : vh;
+
+      section.style.height = `${n * (isMobile ? 50 : 100)}vh`;
+
+      cards.forEach((card, i) => {
+        if (i === n - 1) return;
+
         gsap.fromTo(
           card,
           { scale: 1, opacity: 1 },
           {
-            scale: 0.92,
-            opacity: 0.6,
+            scale: 0.95,
+            opacity: 0,
             ease: "none",
             scrollTrigger: {
-              trigger: card,
-              start: "top top",
-              end: "bottom top",
-              scrub: true,
-            } as ScrollTrigger.Vars,
+              trigger: section,
+              start: `top+=${(i + 1) * scrollPx}px top`,
+              end: `top+=${(i + 2) * scrollPx}px top`,
+              scrub: 1,
+            },
           }
         );
+
+        for (let j = i + 1; j < n; j++) {
+          const fromTop = cardBase + j * cardStep - i * cardStep;
+          const toTop = fromTop - cardStep;
+          gsap.fromTo(
+            wrappers[j],
+            { top: `${fromTop}vh` },
+            {
+              top: `${toTop}vh`,
+              ease: "none",
+              scrollTrigger: {
+                trigger: section,
+                start: `top+=${(i + 1) * scrollPx}px top`,
+                end: `top+=${(i + 2) * scrollPx}px top`,
+                scrub: 1,
+              },
+            }
+          );
+        }
       });
     },
     ref,
@@ -54,7 +97,7 @@ export function ProductGrid() {
           key={p.id}
           className="product-card sticky"
           style={{
-            top: `${10 + i * 6}vh`,
+            top: `${cardLayout.base + i * cardLayout.step}vh`,
             zIndex: 10 + i,
             background: "var(--bg)",
           }}
@@ -62,13 +105,104 @@ export function ProductGrid() {
           <Container>
             <Link href={`/work#${p.slug}`}>
               <div
-                className="product-card-inner rounded-2xl overflow-hidden border border-border bg-elev transition-shadow hover:shadow-2xl"
-                style={{ boxShadow: "0 8px 40px rgba(0,0,0,0.06)" }}
+                className="product-card-inner rounded-2xl overflow-hidden border border-border"
+                style={{
+                  boxShadow: "0 8px 40px rgba(0,0,0,0.08)",
+                  willChange: "transform, opacity",
+                  transformOrigin: "top center",
+                }}
               >
+                {/* Mac-style window chrome — always visible when cards are stacked */}
+                <div
+                  className="flex items-center justify-between px-4 md:px-5 py-3 md:py-3.5 border-b border-border"
+                  style={{ background: "var(--elev)" }}
+                >
+                  <div className="flex items-center gap-3 md:gap-4 min-w-0">
+                    {/* Traffic-light dots */}
+                    <div className="flex items-center gap-[5px] shrink-0">
+                      {DOTS.map((d) => (
+                        <span
+                          key={d.color}
+                          className="rounded-full"
+                          style={{
+                            width: 10,
+                            height: 10,
+                            background: d.color,
+                            flexShrink: 0,
+                          }}
+                        />
+                      ))}
+                    </div>
+
+                    {/* Thin vertical divider */}
+                    <span
+                      className="shrink-0"
+                      style={{
+                        width: 1,
+                        height: 16,
+                        background: "var(--border)",
+                      }}
+                    />
+
+                    {/* Index */}
+                    <span
+                      className="font-mono text-[10px] tracking-widest uppercase text-muted shrink-0"
+                      style={{ fontFamily: "var(--font-mono)" }}
+                    >
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+
+                    {/* Name + label */}
+                    <div className="min-w-0">
+                      <p className="font-semibold text-fg text-sm md:text-base leading-tight truncate">
+                        {p.name}
+                      </p>
+                      <p
+                        className="text-[10px] md:text-[11px] text-muted mt-0.5 truncate"
+                        style={{ fontFamily: "var(--font-mono)" }}
+                      >
+                        {p.label}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Right meta + arrow */}
+                  <div className="flex items-center gap-4 md:gap-5 shrink-0 ml-4">
+                    <div className="text-right hidden sm:block">
+                      <p
+                        className="text-[11px] text-muted"
+                        style={{ fontFamily: "var(--font-mono)" }}
+                      >
+                        {p.sector}
+                      </p>
+                      <p
+                        className="text-[11px] text-muted"
+                        style={{ fontFamily: "var(--font-mono)" }}
+                      >
+                        {p.year}
+                      </p>
+                    </div>
+                    <svg
+                      width="13"
+                      height="13"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="text-muted shrink-0"
+                    >
+                      <line x1="5" y1="12" x2="19" y2="12" />
+                      <polyline points="12 5 19 12 12 19" />
+                    </svg>
+                  </div>
+                </div>
+
                 {/* Image slot */}
                 <div
-                  className="w-full bg-border"
-                  style={{ aspectRatio: "16/7" }}
+                  className="w-full"
+                  style={{ aspectRatio: "16/7", background: "var(--border)" }}
                 >
                   <div
                     className="w-full h-full flex items-center justify-center"
@@ -82,35 +216,6 @@ export function ProductGrid() {
                     >
                       {p.name} — Image coming soon
                     </span>
-                  </div>
-                </div>
-
-                {/* Card footer */}
-                <div className="flex items-center justify-between px-6 py-5">
-                  <div>
-                    <p className="font-medium text-fg text-lg">
-                      {p.name}
-                    </p>
-                    <p
-                      className="text-[13px] text-muted mt-0.5"
-                      style={{ fontFamily: "var(--font-mono)" }}
-                    >
-                      {p.label}
-                    </p>
-                  </div>
-                  <div className="text-right">
-                    <p
-                      className="text-[12px] text-muted"
-                      style={{ fontFamily: "var(--font-mono)" }}
-                    >
-                      {p.sector}
-                    </p>
-                    <p
-                      className="text-[12px] text-muted"
-                      style={{ fontFamily: "var(--font-mono)" }}
-                    >
-                      {p.year}
-                    </p>
                   </div>
                 </div>
               </div>

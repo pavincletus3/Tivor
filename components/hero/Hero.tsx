@@ -112,12 +112,12 @@ export function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full overflow-hidden"
-      style={{ height: "100vh", minHeight: 640, background: "var(--bg)" }}
+      className="relative w-full overflow-hidden hero-section"
+      style={{ minHeight: 640, background: "var(--bg)" }}
       aria-label="Tivor hero"
     >
       {/* Marquee (below nav) */}
-      <div className="absolute left-0 right-0 z-[3]" style={{ top: 88 }}>
+      <div className="absolute left-0 right-0 z-[3]" style={{ top: "var(--nav-h, 92px)" }}>
         <Marquee />
       </div>
 
@@ -161,29 +161,14 @@ export function Hero() {
         </h1>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Bottom gradient fade */}
       <div
-        className="absolute left-1/2 -translate-x-1/2 z-[4] inline-flex items-center gap-2 px-[18px] py-[10px] rounded-full text-[13px] font-medium text-[var(--fg)]"
+        className="absolute bottom-0 left-0 right-0 z-[5] pointer-events-none"
         style={{
-          bottom: 28,
-          background: "var(--elev)",
-          border: "1px solid var(--border)",
+          height: 220,
+          background: "linear-gradient(to bottom, transparent 0%, var(--bg) 100%)",
         }}
-      >
-        <span>Scroll</span>
-        <span
-          aria-hidden
-          style={{
-            display: "inline-block",
-            width: 10,
-            height: 10,
-            borderRight: "1.5px solid var(--fg)",
-            borderBottom: "1.5px solid var(--fg)",
-            transform: "rotate(45deg) translate(-1px, -1px)",
-            animation: "bob 1.6s ease-in-out infinite",
-          }}
-        />
-      </div>
+      />
     </section>
   );
 }

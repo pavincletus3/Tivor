@@ -82,21 +82,25 @@ export const SERVICES = [
     title: "Strategic AI System Design",
     description:
       "Designing AI systems that integrate directly into real operational workflows.",
+    image: "/services/Strategic AI System Design.jpeg",
   },
   {
     title: "Manufacturing Intelligence Systems",
     description:
       "Evaluating manufacturability, plant capability, and production feasibility using AI.",
+    image: "/services/Manufacturing Intelligence Systems.jpeg",
   },
   {
     title: "Procurement Intelligence Systems",
     description:
       "Predicting raw material demand and optimizing procurement decisions.",
+    image: "/services/Procurement Intelligence Systems.jpeg",
   },
   {
     title: "Workforce Simulation Platforms",
     description:
       "Simulating real corporate workflows for training, skill validation, and evaluation.",
+    image: "/services/Worksimulation.jpeg",
   },
 ];
 

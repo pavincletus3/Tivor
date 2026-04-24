@@ -1,12 +1,12 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { gsap } from "@/lib/gsap";
 import { useGsapContext } from "@/components/motion/useGsapContext";
 import { prefersReducedMotion } from "@/lib/reducedMotion";
 import { HOW_WE_WORK } from "@/lib/content";
 
-export function HowWeWork() {
+function HowWeWorkDesktop() {
   const outerRef = useRef<HTMLElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
 
@@ -133,4 +133,96 @@ export function HowWeWork() {
       </div>
     </section>
   );
+}
+
+function HowWeWorkMobile() {
+  return (
+    <section
+      style={{
+        background: "var(--bg)",
+        borderTop: "1px solid var(--border)",
+        marginTop: "8rem",
+      }}
+    >
+      <div style={{ padding: "4rem 1.5rem 2rem" }}>
+        <p
+          className="font-mono text-[11px] tracking-widest uppercase text-muted mb-4"
+          style={{ fontFamily: "var(--font-mono)" }}
+        >
+          How We Work
+        </p>
+        <h2
+          style={{
+            fontSize: "clamp(2.5rem, 10vw, 4rem)",
+            fontWeight: 500,
+            letterSpacing: "-0.04em",
+            lineHeight: 0.95,
+            color: "var(--fg)",
+          }}
+        >
+          Four steps.
+          <br />
+          Real results.
+        </h2>
+      </div>
+      <div>
+        {HOW_WE_WORK.map((step) => (
+          <div
+            key={step.step}
+            style={{
+              padding: "2rem 1.5rem",
+              borderTop: "1px solid var(--border)",
+            }}
+          >
+            <p
+              className="text-muted"
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: "clamp(2.5rem, 12vw, 4rem)",
+                fontWeight: 500,
+                lineHeight: 1,
+                letterSpacing: "-0.04em",
+                opacity: 0.15,
+                marginBottom: "1rem",
+              }}
+            >
+              {step.step}
+            </p>
+            <h3
+              style={{
+                fontSize: "clamp(1.25rem, 5vw, 2rem)",
+                fontWeight: 500,
+                letterSpacing: "-0.03em",
+                lineHeight: 1.1,
+                color: "var(--fg)",
+                marginBottom: "0.75rem",
+              }}
+            >
+              {step.title}
+            </h3>
+            <p
+              style={{
+                fontSize: "clamp(0.9rem, 4vw, 1rem)",
+                lineHeight: 1.7,
+                color: "var(--muted)",
+              }}
+            >
+              {step.description}
+            </p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+export function HowWeWork() {
+  const [isMobile, setIsMobile] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+  }, []);
+
+  if (isMobile === null) return null;
+  return isMobile ? <HowWeWorkMobile /> : <HowWeWorkDesktop />;
 }
