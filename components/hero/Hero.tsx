@@ -132,8 +132,22 @@ export function Hero() {
           <a key={i} className="canvas-card" href="#">
             <span
               className={`tile ${card.tile}`}
-              style={{ aspectRatio: card.ar, display: "block" }}
-            />
+              style={{ aspectRatio: card.ar, display: "block", position: "relative" }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={card.img}
+                alt=""
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  display: "block",
+                }}
+              />
+            </span>
           </a>
         ))}
       </div>

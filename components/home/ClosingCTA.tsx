@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRef } from "react";
 import { Container } from "@/components/layout/Container";
-import { Marquee } from "@/components/motion/Marquee";
+import { LogoMarquee } from "@/components/motion/LogoMarquee";
 import { ScrollReveal } from "@/components/motion/ScrollReveal";
 import { gsap } from "@/lib/gsap";
 import { useGsapContext } from "@/components/motion/useGsapContext";
@@ -94,9 +94,9 @@ export function ClosingCTA() {
         </ScrollReveal>
       </Container>
 
-      {/* Marquee strip */}
+      {/* Logo marquee strip */}
       <div className="mt-24">
-        <Marquee duration={20} />
+        <LogoMarquee />
       </div>
     </section>
   );

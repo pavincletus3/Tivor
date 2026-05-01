@@ -301,6 +301,21 @@ a {
   }
 }
 
+/* ── Logo marquee ── */
+@keyframes logo-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-25%); }
+}
+.logo-track {
+  display: inline-flex;
+  align-items: center;
+  gap: 2rem;
+  white-space: nowrap;
+  will-change: transform;
+  animation: logo-scroll 25s linear infinite;
+  padding-inline: 1rem;
+}
+
 /* ── CTA button hover ── */
 a.cta-btn:hover {
   background-color: var(--fg);
