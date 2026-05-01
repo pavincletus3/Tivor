@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { supabase } from "@/lib/supabase";
 
 const APPS_SCRIPT_URL =
   "https://script.google.com/macros/s/AKfycbzx7Wi4gKzpk-jkIHtrIdT6kqpthQLRQu89-jlpgCAlj3nSp2YsCXoU_9ONhdssCnAS/exec";
@@ -21,6 +22,14 @@ export async function POST(req: NextRequest) {
 
   if (!res.ok) {
     return NextResponse.json({ error: "Failed to send email." }, { status: 500 });
+  }
+
+  const { error: dbError } = await supabase
+    .from("contact_submissions")
+    .insert({ name, email, subject, message });
+
+  if (dbError) {
+    console.error("Supabase insert failed:", dbError.message);
   }
 
   return NextResponse.json({ success: true });

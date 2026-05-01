@@ -5,8 +5,24 @@ import { PRODUCTS } from "@/lib/content";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Work — Tivor",
-  description: "AI systems built for real operations.",
+  title: "Work",
+  description:
+    "Explore Tivor's AI systems built for real operations — ManufAI, ProcureAI, Intercom, and JobReady. Each system is purpose-built for a specific operational domain.",
+  alternates: {
+    canonical: "/work",
+  },
+  openGraph: {
+    title: "Work — Tivor",
+    description:
+      "AI systems built for real operations: manufacturing feasibility, procurement intelligence, internal comms, and workforce simulation.",
+    url: "/work",
+    type: "website",
+  },
+  twitter: {
+    title: "Work — Tivor",
+    description:
+      "AI systems built for real operations: ManufAI, ProcureAI, Intercom, and JobReady.",
+  },
 };
 
 export default function WorkPage() {

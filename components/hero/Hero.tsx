@@ -146,11 +146,11 @@ export function Hero() {
         <h1
           className="hero-heading"
           style={{
-            fontFamily: "var(--font-sans)",
-            fontWeight: 500,
+            fontFamily: "var(--font-bebas)",
+            fontWeight: 400,
             fontSize: "clamp(6rem, 18vw, 16rem)",
             lineHeight: 0.95,
-            letterSpacing: "-0.04em",
+            letterSpacing: "0.02em",
             margin: 0,
             color: "var(--fg)",
             overflow: "hidden",
