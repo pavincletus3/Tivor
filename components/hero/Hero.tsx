@@ -132,8 +132,22 @@ export function Hero() {
           <a key={i} className="canvas-card" href="#">
             <span
               className={`tile ${card.tile}`}
-              style={{ aspectRatio: card.ar, display: "block" }}
-            />
+              style={{ aspectRatio: card.ar, display: "block", position: "relative" }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={card.img}
+                alt=""
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  display: "block",
+                }}
+              />
+            </span>
           </a>
         ))}
       </div>
@@ -146,11 +160,11 @@ export function Hero() {
         <h1
           className="hero-heading"
           style={{
-            fontFamily: "var(--font-sans)",
-            fontWeight: 500,
+            fontFamily: "var(--font-bebas)",
+            fontWeight: 400,
             fontSize: "clamp(6rem, 18vw, 16rem)",
             lineHeight: 0.95,
-            letterSpacing: "-0.04em",
+            letterSpacing: "0.02em",
             margin: 0,
             color: "var(--fg)",
             overflow: "hidden",

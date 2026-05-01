@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+body {
+  font-family: var(--font-sans);
+}
+
 /* ── Theme tokens ── */
 :root,
 [data-theme="light"] {
@@ -295,6 +299,21 @@ a {
   .marquee-track {
     font-size: 11px;
   }
+}
+
+/* ── Logo marquee ── */
+@keyframes logo-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-25%); }
+}
+.logo-track {
+  display: inline-flex;
+  align-items: center;
+  gap: 2rem;
+  white-space: nowrap;
+  will-change: transform;
+  animation: logo-scroll 25s linear infinite;
+  padding-inline: 1rem;
 }
 
 /* ── CTA button hover ── */

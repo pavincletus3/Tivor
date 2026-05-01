@@ -1,6 +1,7 @@
 export const SITE = {
   name: "Tivor",
   tagline: "Strategic AI Systems, Not Generic Tools",
+  url: "https://tivor.us",
   email: "info@tivor.us",
   phone: "+91 91235 99959",
   linkedin: "https://www.linkedin.com/company/tivor-info/",
