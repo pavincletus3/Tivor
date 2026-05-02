@@ -48,7 +48,7 @@ export const PRODUCTS = [
     label: "Workforce Simulation",
     description:
       "A workforce simulation platform that puts candidates through real corporate workflows — testing decision-making, communication, and role-fit before they ever step into an interview.",
-    sector: "HR Tech",
+    sector: "Career Readiness",
     year: "2025",
     slug: "jobready",
     image: "/products/jobready.png",
