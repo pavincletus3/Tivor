@@ -15,7 +15,7 @@ type Status = "idle" | "loading" | "success" | "error";
 export default function ContactPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [subject, setSubject] = useState("");
+
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState<Status>("idle");
 
@@ -27,14 +27,14 @@ export default function ContactPage() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, subject, message }),
+        body: JSON.stringify({ name, email, message }),
       });
 
       if (!res.ok) throw new Error("Request failed");
       setStatus("success");
       setName("");
       setEmail("");
-      setSubject("");
+
       setMessage("");
     } catch {
       setStatus("error");
@@ -44,7 +44,6 @@ export default function ContactPage() {
   const fields = [
     { name: "name",    label: "Name",    type: "text",  value: name,    onChange: setName },
     { name: "email",   label: "Email",   type: "email", value: email,   onChange: setEmail },
-    { name: "subject", label: "Subject", type: "text",  value: subject, onChange: setSubject },
   ];
 
   return (
@@ -175,7 +174,7 @@ export default function ContactPage() {
       {/* Contact columns */}
       <section className="py-20 md:py-32">
         <Container>
-          <div className="grid md:grid-cols-3 gap-px" style={{ background: "var(--border)" }}>
+          <div className="grid md:grid-cols-2 gap-px" style={{ background: "var(--border)" }}>
             {/* Email */}
             <ScrollReveal className="bg-elev">
               <div className="p-8 md:p-10">
@@ -191,25 +190,6 @@ export default function ContactPage() {
                   style={{ fontSize: "clamp(1rem, 1.5vw, 1.25rem)", fontWeight: 400, letterSpacing: "-0.01em" }}
                 >
                   {SITE.email}
-                </a>
-              </div>
-            </ScrollReveal>
-
-            {/* Phone */}
-            <ScrollReveal delay={0.1} className="bg-elev">
-              <div className="p-8 md:p-10">
-                <p
-                  className="font-mono text-[11px] tracking-widest uppercase text-muted mb-4"
-                  style={{ fontFamily: "var(--font-mono)" }}
-                >
-                  Phone
-                </p>
-                <a
-                  href={`tel:${SITE.phone.replace(/\s/g, "")}`}
-                  className="text-fg hover:text-muted transition-colors"
-                  style={{ fontSize: "clamp(1rem, 1.5vw, 1.25rem)", fontWeight: 400, letterSpacing: "-0.01em" }}
-                >
-                  {SITE.phone}
                 </a>
               </div>
             </ScrollReveal>

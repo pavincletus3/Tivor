@@ -3,7 +3,6 @@ export const SITE = {
   tagline: "Strategic AI Systems, Not Generic Tools",
   url: "https://tivor.us",
   email: "info@tivor.us",
-  phone: "+91 91235 99959",
   linkedin: "https://www.linkedin.com/company/tivor-info/",
   instagram: "https://www.instagram.com/tivor.us",
 };

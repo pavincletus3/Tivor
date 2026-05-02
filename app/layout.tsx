@@ -111,11 +111,9 @@ export default function RootLayout({
               description:
                 "Strategic AI Systems, Not Generic Tools. Tivor builds purpose-built AI systems for manufacturing, procurement, and HR operations.",
               email: SITE.email,
-              telephone: SITE.phone,
               sameAs: [SITE.linkedin, SITE.instagram],
               contactPoint: {
                 "@type": "ContactPoint",
-                telephone: SITE.phone,
                 contactType: "customer support",
                 email: SITE.email,
               },
