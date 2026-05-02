@@ -111,13 +111,13 @@ export const SERVICES = [
     title: "Operational AI Readiness",
     description:
       "We assess your workflows, data infrastructure, and team structures to identify where AI delivers real operational value — and where it doesn't.",
-    image: "/services/Strategic AI System Design.jpeg",
+    image: "/services/Operational AI Readiness.png",
   },
   {
     title: "AI Integration & Deployment",
     description:
       "We embed AI systems into your existing tools, processes, and teams — ensuring adoption, not just installation.",
-    image: "/services/Manufacturing Intelligence Systems.jpeg",
+    image: "/services/AI Integration Deployment.png",
   },
 ];
 
