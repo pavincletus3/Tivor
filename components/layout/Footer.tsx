@@ -7,7 +7,7 @@ export function Footer() {
     <footer className="border-t border-[var(--border)] py-12 mt-auto">
       <Container className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
         <div>
-          <p className="font-semibold text-[13px] tracking-wide text-[var(--fg)]">
+          <p style={{ fontFamily: "var(--font-bebas)", fontSize: "1.5rem", letterSpacing: "0.05em", color: "var(--fg)" }}>
             TIVOR
           </p>
           <p className="text-[13px] text-[var(--muted)] mt-1">
