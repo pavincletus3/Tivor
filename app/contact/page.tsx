@@ -8,6 +8,7 @@ import { SITE } from "@/lib/content";
 const SOCIALS = [
   { label: "LinkedIn", href: SITE.linkedin },
   { label: "Instagram", href: SITE.instagram },
+  { label: "X", href: SITE.twitter },
 ];
 
 type Status = "idle" | "loading" | "success" | "error";

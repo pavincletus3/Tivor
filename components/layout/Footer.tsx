@@ -41,6 +41,14 @@ export function Footer() {
           >
             Instagram
           </a>
+          <a
+            href={SITE.twitter}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-[var(--fg)] transition-colors"
+          >
+            X
+          </a>
         </div>
 
         <p className="text-[12px] text-[var(--muted)]">

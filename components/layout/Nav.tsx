@@ -138,6 +138,14 @@ export function Nav() {
             >
               Instagram ↗
             </a>
+            <a
+              href={SITE.twitter}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[12px] font-medium text-[var(--muted)] hover:text-[var(--fg)] transition-colors"
+            >
+              X ↗
+            </a>
           </div>
         </div>
       </div>

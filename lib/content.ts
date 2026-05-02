@@ -5,6 +5,7 @@ export const SITE = {
   email: "info@tivor.us",
   linkedin: "https://www.linkedin.com/company/tivor-info/",
   instagram: "https://www.instagram.com/tivor.us",
+  twitter: "https://x.com/Tivor_X",
 };
 
 export const PRODUCTS = [

@@ -83,7 +83,7 @@ export function CaseStudyCard({
             width={0}
             height={0}
             sizes="(max-width: 768px) 100vw, 90vw"
-            className="w-full h-auto grayscale transition-[filter] duration-500 ease-in-out group-hover:grayscale-0"
+            className="w-full h-auto"
           />
         ) : (
           <div

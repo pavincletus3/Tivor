@@ -98,16 +98,6 @@ export function Hero() {
           sectionRef.current?.removeEventListener("mouseleave", onLeave);
           split?.revert();
         };
-      } else if (cardsRef.current && !reduced) {
-        /* Mobile: gentle ambient drift replaces cursor parallax */
-        gsap.to(cardsRef.current, {
-          x: 14,
-          y: -8,
-          duration: 4,
-          yoyo: true,
-          repeat: -1,
-          ease: "sine.inOut",
-        });
       }
 
       return () => {
@@ -128,7 +118,7 @@ export function Hero() {
       {/* Card canvas */}
       <div
         ref={cardsRef}
-        className="absolute inset-0 w-full h-full"
+        className="hidden md:block absolute inset-0 w-full h-full"
         style={{ pointerEvents: "auto", willChange: "transform", zIndex: 1 }}
         id="cardsWrap"
       >
@@ -187,6 +177,33 @@ export function Hero() {
           background: "linear-gradient(to bottom, transparent 0%, var(--bg) 100%)",
         }}
       />
+
+      {/* Scroll indicator — mobile only */}
+      <div
+        className="md:hidden absolute bottom-8 left-0 right-0 flex flex-col items-center gap-1.5 z-10 pointer-events-none"
+        style={{ color: "var(--muted)" }}
+      >
+        <span
+          className="font-mono text-[10px] tracking-widest uppercase"
+          style={{ fontFamily: "var(--font-mono)" }}
+        >
+          Scroll
+        </span>
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="animate-bounce"
+        >
+          <line x1="12" y1="5" x2="12" y2="19" />
+          <polyline points="19 12 12 19 5 12" />
+        </svg>
+      </div>
     </section>
   );
 }
