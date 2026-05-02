@@ -189,11 +189,11 @@ a {
    */
 
   /* ── Visible ── */
-  .canvas-card:nth-child(1) { width: 26vw; left:  -4%; top: 22%; } /* left-center  */
+  .canvas-card:nth-child(1) { width: 26vw; left:  -4%; top: 18%; } /* left-center  */
   .canvas-card:nth-child(2) { width: 28vw; left:  60%; top:  -8%;} /* top-right    */
-  .canvas-card:nth-child(3) { width: 20vw; left:  86%; top: 42%; } /* right-peek   */
-  .canvas-card:nth-child(4) { width: 26vw; left:   5%; top: 68%; } /* bottom-left  */
-  .canvas-card:nth-child(5) { width: 22vw; left:  39%; top: 74%; } /* below-center */
+  .canvas-card:nth-child(3) { width: 20vw; left:  78%; top: 42%; } /* right-peek   */
+  .canvas-card:nth-child(4) { width: 26vw; left:   9%; top: 68%; } /* bottom-left  */
+  .canvas-card:nth-child(5) { width: 22vw; left:  47%; top: 70%; } /* below-center */
 
   /* Logo-specific backgrounds */
   .canvas-card:nth-child(3) .tile { background: #111111; background-image: none; } /* orange-o — dark bg */
