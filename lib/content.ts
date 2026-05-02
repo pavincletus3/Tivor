@@ -18,7 +18,7 @@ export const PRODUCTS = [
     sector: "Manufacturing",
     year: "2024",
     slug: "manufai",
-    image: "/products/manuf.jpeg",
+    image: "/products/manuf.png",
   },
   {
     id: "procureai",
@@ -29,7 +29,7 @@ export const PRODUCTS = [
     sector: "Procurement",
     year: "2024",
     slug: "procureai",
-    image: "/products/procureai.jpeg",
+    image: "/products/procureai.png",
   },
   {
     id: "intercom",
@@ -40,7 +40,7 @@ export const PRODUCTS = [
     sector: "Enterprise",
     year: "2024",
     slug: "intercom",
-    image: "/products/intercom.jpeg",
+    image: "/products/intercom.png",
   },
   {
     id: "jobready",
@@ -51,7 +51,7 @@ export const PRODUCTS = [
     sector: "HR Tech",
     year: "2025",
     slug: "jobready",
-    image: "/products/jobready.jpeg",
+    image: "/products/jobready.png",
   },
 ];
 
