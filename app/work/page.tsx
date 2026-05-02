@@ -1,7 +1,7 @@
 import { Container } from "@/components/layout/Container";
 import { CaseStudyCard } from "@/components/work/CaseStudyCard";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
-import { PRODUCTS } from "@/lib/content";
+import { PRODUCTS, SITE } from "@/lib/content";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -19,6 +19,9 @@ export const metadata: Metadata = {
     type: "website",
   },
   twitter: {
+    card: "summary_large_image",
+    site: "@Tivor_X",
+    creator: "@Tivor_X",
     title: "Work — Tivor",
     description:
       "AI systems built for real operations: ManufAI, ProcureAI, Intercom, and JobReady.",
@@ -65,6 +68,39 @@ export default function WorkPage() {
       </Container>
 
       <ClosingCTA />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            name: "Tivor AI Systems",
+            description: "Purpose-built AI systems for manufacturing, procurement, and HR operations.",
+            url: `${SITE.url}/work`,
+            itemListElement: PRODUCTS.map((product, index) => ({
+              "@type": "ListItem",
+              position: index + 1,
+              item: {
+                "@type": "SoftwareApplication",
+                name: product.name,
+                description: product.description,
+                applicationCategory: "BusinessApplication",
+                operatingSystem: "Web",
+                offers: {
+                  "@type": "Offer",
+                  availability: "https://schema.org/InStock",
+                },
+                creator: {
+                  "@type": "Organization",
+                  name: "Tivor",
+                  url: SITE.url,
+                },
+              },
+            })),
+          }),
+        }}
+      />
     </main>
   );
 }

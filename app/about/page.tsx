@@ -21,6 +21,9 @@ export const metadata: Metadata = {
     type: "website",
   },
   twitter: {
+    card: "summary_large_image",
+    site: "@Tivor_X",
+    creator: "@Tivor_X",
     title: "About — Tivor",
     description:
       "Custom AI systems for manufacturing, procurement, and HR operations. Built from the ground up — not off a shelf.",

@@ -69,6 +69,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
+    site: "@Tivor_X",
+    creator: "@Tivor_X",
     title: "Tivor — Strategic AI Systems",
     description:
       "Strategic AI Systems, Not Generic Tools. Purpose-built AI for manufacturing, procurement, and HR.",

@@ -16,6 +16,9 @@ export const metadata: Metadata = {
     type: "website",
   },
   twitter: {
+    card: "summary_large_image",
+    site: "@Tivor_X",
+    creator: "@Tivor_X",
     title: "Contact — Tivor",
     description:
       "Get in touch with Tivor to discuss building strategic AI systems for your operations.",
