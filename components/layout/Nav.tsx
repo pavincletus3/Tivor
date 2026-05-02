@@ -43,12 +43,6 @@ export function Nav() {
               key={href}
               href={href}
               className="nav-button relative flex items-center rounded-full font-medium text-[15px] text-[var(--fg)]"
-              onMouseEnter={(e) =>
-                (e.currentTarget.querySelector(".nav-button-dot") as HTMLElement | null)?.classList.add("is-hover")
-              }
-              onMouseLeave={(e) =>
-                (e.currentTarget.querySelector(".nav-button-dot") as HTMLElement | null)?.classList.remove("is-hover")
-              }
             >
               <span className="nav-button-dot" />
               <span>{label}</span>

@@ -240,11 +240,6 @@ a {
     padding 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.nav-button:hover {
-  background-color: var(--border);
-  padding-left: 2.25em;
-}
-
 .nav-button:active {
   transform: scale(0.95);
 }
@@ -261,9 +256,17 @@ a {
   transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.nav-button-dot.is-hover {
-  opacity: 1;
-  transform: scale(1);
+/* Only activate on real pointer devices — prevents stuck dot on iPad touch */
+@media (hover: hover) {
+  .nav-button:hover {
+    background-color: var(--border);
+    padding-left: 2.25em;
+  }
+
+  .nav-button:hover .nav-button-dot {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 /* ── Hamburger sheet ── */
