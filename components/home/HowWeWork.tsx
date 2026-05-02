@@ -136,15 +136,41 @@ function HowWeWorkDesktop() {
 }
 
 function HowWeWorkMobile() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useGsapContext(
+    () => {
+      if (prefersReducedMotion() || !sectionRef.current) return;
+      const steps = gsap.utils.toArray<HTMLElement>(".hww-step", sectionRef.current);
+      steps.forEach((el) => {
+        gsap.from(el, {
+          opacity: 0,
+          x: -20,
+          duration: 0.5,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 85%",
+            toggleActions: "play none none none",
+          },
+        });
+      });
+    },
+    sectionRef,
+    []
+  );
+
   return (
     <section
+      ref={sectionRef}
       style={{
         background: "var(--bg)",
         borderTop: "1px solid var(--border)",
         marginTop: "8rem",
       }}
     >
-      <div style={{ padding: "4rem 1.5rem 2rem" }}>
+      {/* Header */}
+      <div style={{ padding: "3rem 1.5rem 2rem" }}>
         <p
           className="font-mono text-[11px] tracking-widest uppercase text-muted mb-4"
           style={{ fontFamily: "var(--font-mono)" }}
@@ -153,7 +179,7 @@ function HowWeWorkMobile() {
         </p>
         <h2
           style={{
-            fontSize: "clamp(2.5rem, 10vw, 4rem)",
+            fontSize: "clamp(2rem, 9vw, 3rem)",
             fontWeight: 500,
             letterSpacing: "-0.04em",
             lineHeight: 0.95,
@@ -165,46 +191,58 @@ function HowWeWorkMobile() {
           Real results.
         </h2>
       </div>
-      <div>
+
+      {/* Timeline steps */}
+      <div
+        style={{
+          borderTop: "1px solid var(--border)",
+          paddingLeft: "1.5rem",
+          borderLeft: "2px solid var(--border)",
+          marginLeft: "1.5rem",
+        }}
+      >
         {HOW_WE_WORK.map((step) => (
           <div
             key={step.step}
+            className="hww-step"
             style={{
-              padding: "2rem 1.5rem",
-              borderTop: "1px solid var(--border)",
+              padding: "1.75rem 1.5rem 1.75rem 1.25rem",
+              borderBottom: "1px solid var(--border)",
             }}
           >
+            <div style={{ display: "flex", alignItems: "baseline", gap: "0.75rem", marginBottom: "0.5rem" }}>
+              <span
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "0.75rem",
+                  fontWeight: 500,
+                  letterSpacing: "0.08em",
+                  color: "var(--muted)",
+                  opacity: 0.5,
+                  flexShrink: 0,
+                }}
+              >
+                {step.step}
+              </span>
+              <h3
+                style={{
+                  fontSize: "clamp(1.1rem, 4.5vw, 1.5rem)",
+                  fontWeight: 500,
+                  letterSpacing: "-0.03em",
+                  lineHeight: 1.15,
+                  color: "var(--fg)",
+                  margin: 0,
+                }}
+              >
+                {step.title}
+              </h3>
+            </div>
             <p
-              className="text-muted"
               style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: "clamp(2.5rem, 12vw, 4rem)",
-                fontWeight: 500,
-                lineHeight: 1,
-                letterSpacing: "-0.04em",
-                opacity: 0.15,
-                marginBottom: "1rem",
-              }}
-            >
-              {step.step}
-            </p>
-            <h3
-              style={{
-                fontSize: "clamp(1.25rem, 5vw, 2rem)",
-                fontWeight: 500,
-                letterSpacing: "-0.03em",
-                lineHeight: 1.1,
-                color: "var(--fg)",
-                marginBottom: "0.75rem",
-              }}
-            >
-              {step.title}
-            </h3>
-            <p
-              style={{
-                fontSize: "clamp(0.9rem, 4vw, 1rem)",
+                fontSize: "0.9rem",
                 lineHeight: 1.7,
                 color: "var(--muted)",
+                paddingLeft: "2rem",
               }}
             >
               {step.description}

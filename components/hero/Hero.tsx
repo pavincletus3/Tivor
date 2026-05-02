@@ -4,7 +4,6 @@ import { useRef } from "react";
 import Link from "next/link";
 import { gsap } from "@/lib/gsap";
 import { useGsapContext } from "@/components/motion/useGsapContext";
-import { Marquee } from "@/components/motion/Marquee";
 import { prefersReducedMotion } from "@/lib/reducedMotion";
 import { CARDS } from "./cards.data";
 
@@ -99,6 +98,16 @@ export function Hero() {
           sectionRef.current?.removeEventListener("mouseleave", onLeave);
           split?.revert();
         };
+      } else if (cardsRef.current && !reduced) {
+        /* Mobile: gentle ambient drift replaces cursor parallax */
+        gsap.to(cardsRef.current, {
+          x: 14,
+          y: -8,
+          duration: 4,
+          yoyo: true,
+          repeat: -1,
+          ease: "sine.inOut",
+        });
       }
 
       return () => {
@@ -116,11 +125,6 @@ export function Hero() {
       style={{ minHeight: 640, background: "var(--bg)" }}
       aria-label="Tivor hero"
     >
-      {/* Marquee (below nav) */}
-      <div className="absolute left-0 right-0 z-[3]" style={{ top: "var(--nav-h, 92px)" }}>
-        <Marquee />
-      </div>
-
       {/* Card canvas */}
       <div
         ref={cardsRef}
@@ -129,7 +133,7 @@ export function Hero() {
         id="cardsWrap"
       >
         {CARDS.map((card, i) => (
-          <a key={i} className="canvas-card" href="#">
+          <Link key={i} className="canvas-card" href={card.href}>
             <span
               className={`tile ${card.tile}`}
               style={{ aspectRatio: card.ar, display: "block", position: "relative" }}
@@ -148,7 +152,7 @@ export function Hero() {
                 }}
               />
             </span>
-          </a>
+          </Link>
         ))}
       </div>
 

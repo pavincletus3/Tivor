@@ -16,7 +16,7 @@ export function Container({
 }: ContainerProps) {
   return (
     <Tag
-      className={clsx("mx-auto w-full max-w-[1280px] px-6 md:px-10", className)}
+      className={clsx("mx-auto w-full max-w-[1280px] px-4 sm:px-6 md:px-10", className)}
       style={style}
     >
       {children}

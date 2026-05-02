@@ -48,7 +48,8 @@ export function ClosingCTA() {
   return (
     <section
       ref={sectionRef}
-      className="py-40 border-t border-[var(--border)]"
+      id="closing-cta"
+      className="py-20 md:py-40 border-t border-[var(--border)]"
       style={{ background: "var(--bg)" }}
     >
       <Container className="text-center">

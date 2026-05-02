@@ -17,10 +17,10 @@ const DOTS = [
 
 export function ProductGrid() {
   const ref = useRef<HTMLElement>(null);
-  const [cardLayout, setCardLayout] = useState({ base: 10, step: 6 });
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    if (window.innerWidth < 768) setCardLayout({ base: 6, step: 12 });
+    setIsMobile(window.innerWidth < 768);
   }, []);
 
   useGsapContext(
@@ -33,11 +33,30 @@ export function ProductGrid() {
       const n = cards.length;
       const vh = window.innerHeight;
       const isMobile = window.innerWidth < 768;
-      const cardBase = isMobile ? 6 : 10;
-      const cardStep = isMobile ? 12 : 6;
-      const scrollPx = isMobile ? vh * 0.5 : vh;
 
-      section.style.height = `${n * (isMobile ? 50 : 100)}vh`;
+      if (isMobile) {
+        section.style.height = "auto";
+        cards.forEach((card) => {
+          gsap.from(card, {
+            opacity: 0,
+            y: 40,
+            duration: 0.6,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: card,
+              start: "top 88%",
+              toggleActions: "play none none none",
+            },
+          });
+        });
+        return;
+      }
+
+      const cardBase = 10;
+      const cardStep = 6;
+      const scrollPx = vh;
+
+      section.style.height = `${n * 100}vh`;
 
       cards.forEach((card, i) => {
         if (i === n - 1) return;
@@ -83,8 +102,8 @@ export function ProductGrid() {
   );
 
   return (
-    <section ref={ref} style={{ height: `${PRODUCTS.length * 100}vh` }}>
-      <Container className="sticky top-0 pt-24 pb-8">
+    <section ref={ref} style={{ height: isMobile ? "auto" : `${PRODUCTS.length * 100}vh` }}>
+      <Container className="sticky top-0 pt-16 md:pt-24 pb-6 md:pb-8">
         <p
           className="font-mono text-[11px] tracking-widest uppercase text-muted mb-8"
           style={{ fontFamily: "var(--font-mono)" }}
@@ -96,9 +115,9 @@ export function ProductGrid() {
       {PRODUCTS.map((p, i) => (
         <div
           key={p.id}
-          className="product-card sticky"
+          className={`product-card${isMobile ? " mb-4" : " sticky"}`}
           style={{
-            top: `${cardLayout.base + i * cardLayout.step}vh`,
+            top: isMobile ? "auto" : `${10 + i * 6}vh`,
             zIndex: 10 + i,
             background: "var(--bg)",
           }}

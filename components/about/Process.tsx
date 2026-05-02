@@ -41,15 +41,12 @@ export function Process() {
           {HOW_WE_WORK.map((step, i) => (
             <ScrollReveal key={step.step} delay={i * 0.1}>
               <div
+                className="how-we-work-row grid grid-cols-1 md:grid-cols-2 md:gap-x-16"
                 style={{
-                  display: "grid",
-                  gridTemplateColumns: "1fr 1fr",
-                  gap: "0 4rem",
-                  padding: "3rem 0",
+                  padding: "2.5rem 0",
                   borderTop: "1px solid var(--border)",
                   alignItems: "start",
                 }}
-                className="how-we-work-row"
               >
                 {/* Left: step number + title */}
                 <div style={{ display: "flex", alignItems: "baseline", gap: "1.5rem" }}>
@@ -80,6 +77,7 @@ export function Process() {
 
                 {/* Right: description */}
                 <p
+                  className="mt-3 md:mt-0"
                   style={{
                     fontSize: "clamp(0.9rem, 1.1vw, 1rem)",
                     lineHeight: 1.8,

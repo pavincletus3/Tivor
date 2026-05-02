@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { LenisProvider } from "@/components/providers/LenisProvider";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
+import { FloatingCTA } from "@/components/layout/FloatingCTA";
 import { SITE } from "@/lib/content";
 
 const inter = Inter({
@@ -97,6 +98,7 @@ export default function RootLayout({
             <Nav />
             <div className="flex-1 flex flex-col">{children}</div>
             <Footer />
+            <FloatingCTA />
           </LenisProvider>
         </ThemeProvider>
         <script

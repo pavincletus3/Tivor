@@ -51,7 +51,7 @@ export default function ContactPage() {
       {/* Hero — heading left, form right */}
       <section className="py-24 md:py-40 border-b border-border">
         <Container>
-          <div className="grid md:grid-cols-2 gap-16 md:gap-24 items-start">
+          <div className="grid md:grid-cols-2 gap-10 md:gap-24 items-start">
             {/* Left: heading + tagline */}
             <div className="md:sticky md:top-32">
               <h1
