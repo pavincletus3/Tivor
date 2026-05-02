@@ -16,15 +16,6 @@ export function Hero() {
       const reduced = prefersReducedMotion();
 
       /* 1 — Wordmark char reveal */
-      const SplitTypeModule =
-        typeof window !== "undefined"
-          ? (
-              window as typeof window & {
-                SplitType?: typeof import("split-type").default;
-              }
-            ).SplitType
-          : null;
-
       let split: import("split-type").default | null = null;
 
       const runSplit = async () => {
@@ -112,13 +103,13 @@ export function Hero() {
     <section
       ref={sectionRef}
       className="relative w-full overflow-hidden hero-section"
-      style={{ minHeight: 640, background: "var(--bg)" }}
+      style={{ minHeight: "100svh", background: "var(--bg)" }}
       aria-label="Tivor hero"
     >
-      {/* Card canvas */}
+      {/* Card canvas — all screen sizes */}
       <div
         ref={cardsRef}
-        className="hidden md:block absolute inset-0 w-full h-full"
+        className="absolute inset-0 w-full h-full"
         style={{ pointerEvents: "auto", willChange: "transform", zIndex: 1 }}
         id="cardsWrap"
       >
@@ -177,33 +168,6 @@ export function Hero() {
           background: "linear-gradient(to bottom, transparent 0%, var(--bg) 100%)",
         }}
       />
-
-      {/* Scroll indicator — mobile only */}
-      <div
-        className="md:hidden absolute bottom-8 left-0 right-0 flex flex-col items-center gap-1.5 z-10 pointer-events-none"
-        style={{ color: "var(--muted)" }}
-      >
-        <span
-          className="font-mono text-[10px] tracking-widest uppercase"
-          style={{ fontFamily: "var(--font-mono)" }}
-        >
-          Scroll
-        </span>
-        <svg
-          width="16"
-          height="16"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="animate-bounce"
-        >
-          <line x1="12" y1="5" x2="12" y2="19" />
-          <polyline points="19 12 12 19 5 12" />
-        </svg>
-      </div>
     </section>
   );
 }

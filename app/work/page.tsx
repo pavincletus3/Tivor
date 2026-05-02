@@ -34,7 +34,7 @@ export default function WorkPage() {
             className="font-mono text-[11px] tracking-[0.1em] uppercase text-[var(--muted)] mb-4"
             style={{ fontFamily: "var(--font-mono)" }}
           >
-            Selected Work
+            Featured Works
           </p>
           <h1
             style={{

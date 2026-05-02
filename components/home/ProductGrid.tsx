@@ -108,7 +108,7 @@ export function ProductGrid() {
           className="font-mono text-[11px] tracking-widest uppercase text-muted mb-8"
           style={{ fontFamily: "var(--font-mono)" }}
         >
-          Selected Work
+          Featured Works
         </p>
       </Container>
 

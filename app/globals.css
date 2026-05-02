@@ -201,11 +201,11 @@ a {
   [data-theme="dark"] .canvas-card:nth-child(5) .tile { background: #f5f5f5; background-image: none; }
 
   @media (max-width: 768px) {
-    .canvas-card:nth-child(1) { width: 52vw; left:  -8%; top: 20%; }
-    .canvas-card:nth-child(2) { width: 54vw; left:  52%; top:  -6%;}
-    .canvas-card:nth-child(3) { width: 38vw; left:  72%; top: 44%; }
-    .canvas-card:nth-child(4) { width: 48vw; left:   4%; top: 66%; }
-    .canvas-card:nth-child(5) { width: 42vw; left:  29%; top: 72%; } /* below-center */
+    .canvas-card:nth-child(1) { width: 30vw; left:   2%; top: 26%; } /* top-left                 */
+    .canvas-card:nth-child(2) { width: 34vw; left:  58%; top: 16%; } /* top-right                */
+    .canvas-card:nth-child(3) { width: 32vw; left:   0%; top: 62%; } /* lower-left peek          */
+    .canvas-card:nth-child(4) { width: 34vw; left:  64%; top: 56%; } /* lower-right              */
+    .canvas-card:nth-child(5) { width: 30vw; left:  40%; top: 76%; } /* bottom-center            */
   }
 }
 
