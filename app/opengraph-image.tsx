@@ -10,9 +10,12 @@ export default async function Image() {
   const logoData = readFileSync(join(process.cwd(), "public/logo.png"));
   const logoBase64 = `data:image/png;base64,${logoData.toString("base64")}`;
 
-  const bebasFont = await fetch(
-    "https://fonts.gstatic.com/s/bebasneue/v14/JTUSjIg69CK48gW7PXooxW5rygbi49c.woff2"
-  ).then((r) => r.arrayBuffer());
+  const css = await fetch(
+    "https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap",
+    { headers: { "User-Agent": "Mozilla/5.0 (compatible; Googlebot/2.1)" } }
+  ).then((r) => r.text());
+  const fontUrl = css.match(/src:\s*url\(([^)]+)\)/)?.[1] ?? "";
+  const bebasFont = await fetch(fontUrl).then((r) => r.arrayBuffer());
 
   return new ImageResponse(
     (
