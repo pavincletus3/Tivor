@@ -43,7 +43,7 @@ export default async function Image() {
             src={logoBase64}
             width={110}
             height={110}
-            style={{ objectFit: "contain" }}
+            style={{ objectFit: "contain", filter: "brightness(0) invert(1)" }}
           />
           <span
             style={{
