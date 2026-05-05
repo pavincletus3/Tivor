@@ -1,10 +1,19 @@
 import { ImageResponse } from "next/og";
+import { readFileSync } from "fs";
+import { join } from "path";
 
 export const alt = "Tivor — Strategic AI Systems";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-export default function Image() {
+export default async function Image() {
+  const logoData = readFileSync(join(process.cwd(), "public/logo.png"));
+  const logoBase64 = `data:image/png;base64,${logoData.toString("base64")}`;
+
+  const bebasFont = await fetch(
+    "https://fonts.gstatic.com/s/bebasneue/v14/JTUSjIg69CK48gW7PXooxW5rygbi49c.woff2"
+  ).then((r) => r.arrayBuffer());
+
   return new ImageResponse(
     (
       <div
@@ -24,15 +33,21 @@ export default function Image() {
           style={{
             display: "flex",
             alignItems: "center",
-            gap: 20,
+            gap: 24,
           }}
         >
+          <img
+            src={logoBase64}
+            width={110}
+            height={110}
+            style={{ objectFit: "contain" }}
+          />
           <span
             style={{
               color: "#ffffff",
-              fontSize: 88,
-              fontWeight: 700,
-              letterSpacing: "-4px",
+              fontSize: 108,
+              fontFamily: "Bebas Neue",
+              letterSpacing: "2px",
               lineHeight: 1,
             }}
           >
@@ -74,6 +89,16 @@ export default function Image() {
         </div>
       </div>
     ),
-    { ...size }
+    {
+      ...size,
+      fonts: [
+        {
+          name: "Bebas Neue",
+          data: bebasFont,
+          style: "normal",
+          weight: 400,
+        },
+      ],
+    }
   );
 }
